@@ -4,25 +4,25 @@ import Moin from "../components/Moin.astro";
 ---
 
 <script>
-  import { annotate } from "rough-notation";
+    import { annotate } from "rough-notation";
 
-  const fullStack = document.querySelector("#fullstack");
+    const fullStack = document.querySelector("#fullstack");
 
-  if (fullStack) {
-    annotate(fullStack as HTMLElement, {
-      type: "underline",
-      color: "#000",
-    }).show();
-  }
+    if (fullStack) {
+        annotate(fullStack as HTMLElement, {
+            type: "underline",
+            color: "#000",
+        }).show();
+    }
 </script>
 
 <Layout>
-  <Moin />
+    <Moin />
 
-  <div class="mt-10">
-    <p>
-      Moin! I am Justin Vietz, a <span id="fullstack">full-stack</span> developer by
-      ❤️
-    </p>
-  </div>
+    <div class="mt-10">
+        <p>
+            Moin! I am Justin Vietz, a <span id="fullstack">full-stack</span> developer
+            by ❤️
+        </p>
+    </div>
 </Layout>
