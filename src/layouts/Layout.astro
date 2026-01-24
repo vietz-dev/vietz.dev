@@ -1,24 +1,48 @@
 ---
-import { ClientRouter } from "astro:transitions";
+import Copyright from "../components/Copyright.astro";
 import Navbar from "../components/Navbar.astro";
 import "../styles/global.css";
-const year = new Date().getFullYear();
+
+type Props = {
+  title?: string;
+  description?: string;
+  lang?: string;
+};
+
+const {
+  title = "vietz.dev | DevBy \u2764\uFE0F",
+  description = "Portfolio of Justin Vietz. Full-stack developer, projects, and writing.",
+  lang = "en"
+} = Astro.props as Props;
+
+const canonicalUrl = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).toString()
+  : undefined;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
-        <title>vietz.dev | DevBy❤️</title>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        {canonicalUrl ? <meta property="og:url" content={canonicalUrl} /> : null}
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
     </head>
     <body>
         <Navbar />
-        <div class="container mx-auto px-4 mt-5">
+        <main class="container mx-auto px-4 mt-5">
             <slot />
-        </div>
+        </main>
         <footer class="container mx-auto px-4 border-t border-black pt-3 mt-10">
             <ul class="flex flex-col gap-1">
                 <li>
@@ -37,7 +61,7 @@ const year = new Date().getFullYear();
                     >
                 </li>
             </ul>
-            <p class="mt-10">© {year} Justin Vietz. All rights reserved.</p>
+            <p class="mt-10"><Copyright /></p>
         </footer>
     </body>
 </html>

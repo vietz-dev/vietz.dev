@@ -1,0 +1,10 @@
+---
+const buildYear = new Date().getFullYear();
+---
+
+© <span id="copyright-year">{buildYear}</span> Justin Vietz. All rights reserved.
+
+<script is:inline>
+    const el = document.getElementById("copyright-year");
+    if (el) el.textContent = String(new Date().getFullYear());
+</script>

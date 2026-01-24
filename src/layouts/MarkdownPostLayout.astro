@@ -2,13 +2,28 @@
 import Layout from "./Layout.astro";
 
 const { frontmatter } = Astro.props;
+const {
+  title,
+  description,
+  date
+} = frontmatter ?? {};
 ---
 
-<Layout>
+<Layout
+  title={title ? `${title} | Justin Vietz` : "Blog | Justin Vietz"}
+  description={description}
+>
   <div class="mt-10">
-    <h1 class="text-3xl font-bold mb-8" transition:name="blogTitle">{frontmatter.title}</h1>
-    <div class="prose">
+    <article>
+      <header class="mb-6">
+        <h1 class="text-3xl font-bold" transition:name="blogTitle">{title}</h1>
+        {date ? (
+          <p class="text-sm text-gray-600 mt-2">{date}</p>
+        ) : null}
+      </header>
+      <div class="prose">
       <slot />
-    </div>
+      </div>
+    </article>
   </div>
 </Layout>

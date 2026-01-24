@@ -3,13 +3,13 @@ import Layout from "../layouts/Layout.astro";
 import Moin from "../components/Moin.astro";
 ---
 
-<script>
+<script is:inline>
     import { annotate } from "rough-notation";
 
     const fullStack = document.querySelector("#fullstack");
 
     if (fullStack) {
-        annotate(fullStack as HTMLElement, {
+        annotate(fullStack, {
             type: "underline",
             color: "#000",
         }).show();
