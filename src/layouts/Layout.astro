@@ -1,5 +1,6 @@
 ---
 import Copyright from "../components/Copyright.astro";
+import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
 import "../styles/global.css";
 
@@ -43,26 +44,7 @@ const canonicalUrl = Astro.site
         <main class="container mx-auto px-4 mt-5 text-text">
             <slot />
         </main>
-        <footer class="container mx-auto px-4 border-t border-border pt-3 mt-10 text-text">
-            <ul class="flex flex-col gap-1">
-                <li>
-                    <a
-                        class="underline"
-                        target="_blank"
-                        href="https://github.com/vietz-dev">GitHub</a
-                    >
-                </li>
-                <li>
-                    <a
-                        class="underline"
-                        target="_blank"
-                        href="https://www.linkedin.com/in/justin-vietz"
-                        >Linkedin</a
-                    >
-                </li>
-            </ul>
-            <p class="mt-10"><Copyright /></p>
-        </footer>
+        <Footer />
     </body>
 </html>
 
