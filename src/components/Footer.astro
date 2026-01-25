@@ -1,0 +1,56 @@
+---
+import Copyright from "./Copyright.astro";
+import { Linkedin } from "@lucide/astro";
+import type { JSX } from "astro/jsx-runtime";
+import { Github, Xing } from "simple-icons-astro";
+
+type SocialLink = {
+    Icon: () => JSX.Element;
+    text: string;
+    href: string;
+};
+
+const socialLinks: SocialLink[] = [
+    {
+        Icon: () => Github,
+        text: "GitHub",
+        href: "https://github.com/vietz-dev",
+    },
+    {
+        Icon: () => Linkedin,
+        text: "Linkedin",
+        href: "https://www.linkedin.com/in/justin-vietz",
+    },
+    {
+        Icon: () => Xing,
+        text: "Xing",
+        href: "https://www.xing.com/profile/Justin_Vietz",
+    },
+];
+---
+
+<footer
+    class="container mx-auto px-4 border-t border-border pt-3 mt-10 text-text"
+>
+    <ul class="flex flex-col gap-1">
+        {
+            socialLinks.map(({ Icon, text, href }) => {
+                const IconComponent = Icon();
+
+                return (
+                    <li>
+                        <a
+                            class="inline-flex items-center gap-2 underline"
+                            target="_blank"
+                            href={href}
+                        >
+                            <IconComponent size={16} />
+                            <span>{text}</span>
+                        </a>
+                    </li>
+                );
+            })
+        }
+    </ul>
+    <p class="mt-10"><Copyright /></p>
+</footer>

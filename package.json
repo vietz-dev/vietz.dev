@@ -13,6 +13,7 @@
     "@tailwindcss/vite": "^4.0.1",
     "astro": "^5.16.15",
     "rough-notation": "^0.5.1",
+    "simple-icons-astro": "^16.1.0",
     "tailwindcss": "^4.0.1"
   }
 }
