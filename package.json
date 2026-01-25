@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@lucide/astro": "^0.563.0",
     "@tailwindcss/vite": "^4.0.1",
     "astro": "^5.16.15",
     "rough-notation": "^0.5.1",

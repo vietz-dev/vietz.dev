@@ -1,0 +1,80 @@
+---
+import { Monitor, Moon, Sun } from "@lucide/astro";
+---
+
+<button
+    id="themeToggle"
+    aria-label="Theme: system"
+    type="button"
+    class="inline-flex items-center justify-center rounded-full border-2 border-black p-2 transition-all duration-300 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[4px_4px_0px_#aaa] dark:border-gray-200 dark:hover:shadow-[4px_4px_0px_#111]"
+>
+    <Monitor data-theme-icon="system" />
+    <Sun class="hidden" data-theme-icon="light" />
+    <Moon class="hidden" data-theme-icon="dark" />
+</button>
+
+<script is:inline>
+    const storageKey = "theme";
+    /** @typedef {"system" | "light" | "dark"} Theme */
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const button = document.getElementById("themeToggle");
+    const icons = button?.querySelectorAll("[data-theme-icon]") ?? [];
+
+    const isTheme = (value) =>
+        value === "system" || value === "light" || value === "dark";
+
+    const normalizeTheme = (value) =>
+        isTheme(value) ? value : "system";
+
+    const getStoredTheme = () => {
+        try {
+            return normalizeTheme(window.localStorage.getItem(storageKey));
+        } catch {
+            return "system";
+        }
+    };
+
+    const applyTheme = (/** @type {Theme} */ theme) => {
+        const isDark = theme === "dark" || (theme === "system" && media.matches);
+        document.documentElement.classList.toggle("dark", isDark);
+        document.documentElement.dataset.theme = theme;
+        icons.forEach((icon) => {
+            const shouldShow = icon.getAttribute("data-theme-icon") === theme;
+            icon.classList.toggle("hidden", !shouldShow);
+        });
+        button?.setAttribute("aria-label", `Theme: ${theme}`);
+    };
+
+    const initialTheme = getStoredTheme();
+    applyTheme(initialTheme);
+
+    const getCurrentTheme = () =>
+        normalizeTheme(document.documentElement.dataset.theme ?? "system");
+
+    const getNextTheme = (/** @type {Theme} */ current) => {
+        switch (current) {
+            case "system":
+                return "light";
+            case "light":
+                return "dark";
+            default:
+                return "system";
+        }
+    };
+
+    const handleToggleClick = () => {
+        const next = getNextTheme(getCurrentTheme());
+        try {
+            window.localStorage.setItem(storageKey, next);
+        } catch {}
+        applyTheme(next);
+    };
+
+    button?.addEventListener("click", handleToggleClick);
+
+    media.addEventListener("change", () => {
+        if (getCurrentTheme() === "system") {
+            applyTheme("system");
+        }
+    });
+</script>
