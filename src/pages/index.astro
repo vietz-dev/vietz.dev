@@ -3,10 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import Moin from "../components/Moin.astro";
 ---
 
-<script is:inline>
+<script>
     import { annotate } from "rough-notation";
 
-    const fullStack = document.querySelector("#fullstack");
+    const fullStack = document.getElementById("#fullstack");
 
     if (fullStack) {
         annotate(fullStack, {

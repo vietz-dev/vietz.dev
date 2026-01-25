@@ -1,3 +1,54 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+    :root {
+
+        --color-bg: var(--color-amber-50);
+        --color-bg-dark: var(--color-neutral-800);
+        --color-bg-light: var(--color-amber-200);
+
+        --color-text: var(--color-neutral-800);
+        --color-text-muted: var(--color-neutral-500);
+        --color-text-inverted: var(--color-neutral-100);
+
+        --color-border: var(--color-neutral-900)
+    }
+
+    .dark {
+
+        --color-bg: var(--color-zinc-900);
+        --color-bg-dark: var(--color-neutral-950);
+        --color-bg-light: var(--color-zinc-300);
+
+        --color-text: var(--color-zinc-100);
+        --color-text-muted: var(--color-neutral-400);
+        --color-text-inverted: var(--color-neutral-900);
+
+        --color-border: var(--color-neutral-300);
+    }
+}
+
+@theme {
+    --color-bg: var(--color-bg);
+    --color-bg-dark: var(--color-bg-dark);
+    --color-bg-light: var(--color-bg-light);
+
+    --color-text: var(--color-text);
+    --color-text-muted: var(--color-text-muted);
+    --color-text-inverted: var(--color-text-inverted);
+
+    --color-border: var(--color-border)
+}
+
+@layer components {
+    .card-hover {
+        @apply block p-4 rounded-lg border-2 border-border transition-all duration-300 ease-in-out;
+    }
+
+    .card-hover:hover {
+        @apply -translate-x-1 -translate-y-1;
+        box-shadow: 4px 4px 0 #aaa;
+    }
+}
