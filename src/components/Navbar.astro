@@ -15,8 +15,8 @@ function matchesPath(path: string): boolean {
 }
 ---
 
-<nav class="container mx-auto px-4 py-5 border-b border-black">
-  <ul class="flex gap-3 items-center">
+<nav class="container mx-auto px-4 py-5 border-b border-border">
+  <ul class="flex gap-3 items-center text-text">
     <li>
       <a class:list={[{ active: matchesPath("") }]} href="/">home</a>
     </li>
@@ -49,10 +49,10 @@ function matchesPath(path: string): boolean {
 
     &.active {
       &::before {
-        color: #000; /* Black braces for the active link */
+        color: var(--color-text); /* Black braces for the active link */
       }
       &::after {
-        color: #000; /* Black braces for the active link */
+        color: var(--color-text); /* Black braces for the active link */
       }
     }
 
@@ -60,7 +60,7 @@ function matchesPath(path: string): boolean {
     &:hover:not(.active) {
       &::before,
       &::after {
-        color: #aaa;
+        color: var(--color-text-muted);
       }
     }
   }
