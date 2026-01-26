@@ -1,28 +1,28 @@
 ---
+import  Linkedin from "@lucide/astro/icons/linkedin";
+import Github from "simple-icons-astro/Github";
+import Xing from "simple-icons-astro/Xing";
 import Copyright from "./Copyright.astro";
-import { Linkedin } from "@lucide/astro";
-import type { JSX } from "astro/jsx-runtime";
-import { Github, Xing } from "simple-icons-astro";
 
 type SocialLink = {
-    Icon: () => JSX.Element;
+    Icon: typeof Github | typeof Linkedin;
     text: string;
     href: string;
 };
 
 const socialLinks: SocialLink[] = [
     {
-        Icon: () => Github,
+        Icon: Github,
         text: "GitHub",
         href: "https://github.com/vietz-dev",
     },
     {
-        Icon: () => Linkedin,
+        Icon: Linkedin,
         text: "Linkedin",
         href: "https://www.linkedin.com/in/justin-vietz",
     },
     {
-        Icon: () => Xing,
+        Icon: Xing,
         text: "Xing",
         href: "https://www.xing.com/profile/Justin_Vietz",
     },
@@ -35,8 +35,6 @@ const socialLinks: SocialLink[] = [
     <ul class="flex flex-col gap-1">
         {
             socialLinks.map(({ Icon, text, href }) => {
-                const IconComponent = Icon();
-
                 return (
                     <li>
                         <a
@@ -44,7 +42,7 @@ const socialLinks: SocialLink[] = [
                             target="_blank"
                             href={href}
                         >
-                            <IconComponent size={16} />
+                            <Icon size={16} />
                             <span>{text}</span>
                         </a>
                     </li>
