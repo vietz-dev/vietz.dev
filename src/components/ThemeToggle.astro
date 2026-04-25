@@ -1,80 +1,74 @@
 ---
-import { Monitor, Moon, Sun } from "@lucide/astro";
+import { Moon, Sun } from "@lucide/astro";
 ---
 
-<button
-    id="themeToggle"
-    aria-label="Theme: system"
-    type="button"
-    class="inline-flex items-center justify-center rounded-full border-2 border-border p-2 card-hover"
->
-    <Monitor data-theme-icon="system" />
-    <Sun class="hidden" data-theme-icon="light" />
-    <Moon class="hidden" data-theme-icon="dark" />
+<button id="themeToggle" class="icon-button theme-toggle" type="button" aria-label="Toggle theme">
+  <Sun class="theme-icon sun-icon" size={18} />
+  <Moon class="theme-icon moon-icon" size={18} />
 </button>
 
 <script is:inline>
-    const storageKey = "theme";
-    /** @typedef {"system" | "light" | "dark"} Theme */
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const button = document.getElementById("themeToggle");
-    const icons = button?.querySelectorAll("[data-theme-icon]") ?? [];
+  const storageKey = "theme";
+  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  const button = document.getElementById("themeToggle");
 
-    const isTheme = (value) =>
-        value === "system" || value === "light" || value === "dark";
+  const applyTheme = (theme) => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    document.documentElement.dataset.theme = theme;
+  };
 
-    const normalizeTheme = (value) =>
-        isTheme(value) ? value : "system";
+  const getCurrentTheme = () => {
+    const theme = document.documentElement.dataset.theme;
+    return theme === "dark" ? "dark" : "light";
+  };
 
-    const getStoredTheme = () => {
-        try {
-            return normalizeTheme(window.localStorage.getItem(storageKey));
-        } catch {
-            return "system";
-        }
-    };
+  button?.addEventListener("click", () => {
+    const nextTheme = getCurrentTheme() === "dark" ? "light" : "dark";
+    try {
+      window.localStorage.setItem(storageKey, nextTheme);
+    } catch {}
+    applyTheme(nextTheme);
+  });
 
-    const applyTheme = (/** @type {Theme} */ theme) => {
-        const isDark = theme === "dark" || (theme === "system" && media.matches);
-        document.documentElement.classList.toggle("dark", isDark);
-        document.documentElement.dataset.theme = theme;
-        icons.forEach((icon) => {
-            const shouldShow = icon.getAttribute("data-theme-icon") === theme;
-            icon.classList.toggle("hidden", !shouldShow);
-        });
-        button?.setAttribute("aria-label", `Theme: ${theme}`);
-    };
-
-    const initialTheme = getStoredTheme();
-    applyTheme(initialTheme);
-
-    const getCurrentTheme = () =>
-        normalizeTheme(document.documentElement.dataset.theme ?? "system");
-
-    const getNextTheme = (/** @type {Theme} */ current) => {
-        switch (current) {
-            case "system":
-                return "light";
-            case "light":
-                return "dark";
-            default:
-                return "system";
-        }
-    };
-
-    const handleToggleClick = () => {
-        const next = getNextTheme(getCurrentTheme());
-        try {
-            window.localStorage.setItem(storageKey, next);
-        } catch {}
-        applyTheme(next);
-    };
-
-    button?.addEventListener("click", handleToggleClick);
-
-    media.addEventListener("change", () => {
-        if (getCurrentTheme() === "system") {
-            applyTheme("system");
-        }
-    });
+  mediaQuery.addEventListener("change", () => {
+    try {
+      const stored = window.localStorage.getItem(storageKey);
+      if (stored !== "light" && stored !== "dark") {
+        applyTheme(mediaQuery.matches ? "dark" : "light");
+      }
+    } catch {}
+  });
 </script>
+
+<style>
+  .theme-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    border: 1.5px solid var(--border-strong);
+    background: transparent;
+    color: var(--fg);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .theme-toggle:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .theme-icon {
+    position: absolute;
+    transition: opacity 0.2s ease;
+  }
+
+  :root:not(.dark) .sun-icon,
+  :root.dark .moon-icon {
+    opacity: 0;
+    pointer-events: none;
+  }
+</style>

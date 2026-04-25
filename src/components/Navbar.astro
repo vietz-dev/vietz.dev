@@ -1,67 +1,106 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro";
 
-const currentPage = new URL(Astro.url.pathname, Astro.url).pathname;
-const trimmedPath = currentPage.endsWith("/")
-  ? currentPage.slice(0, -1)
-  : currentPage;
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 
-function matchesPath(path: string): boolean {
-  if (path === "") {
-    return trimmedPath === "";
-  }
+const navItems = [
+  { href: "/", label: "home" },
+  { href: "/projects", label: "projects" },
+  { href: "/blog", label: "blog" },
+];
 
-  return trimmedPath.startsWith(path);
-}
+const isActive = (href: string) =>
+  href === "/" ? pathname === "/" : pathname.startsWith(href);
 ---
 
-<nav class="container mx-auto px-4 py-5 border-b border-border">
-  <ul class="flex gap-3 items-center text-text">
-    <li>
-      <a class:list={[{ active: matchesPath("") }]} href="/">home</a>
-    </li>
-    <li>
-      <a class:list={[{ active: matchesPath("/projects") }]} href="/projects"
-        >projects</a
-      >
-    </li>
-    <li>
-      <a class:list={[{ active: matchesPath("/blog") }]} href="/blog">blog</a>
-    </li>
-    <li class="ml-auto">
-      <ThemeToggle />
-    </li>
-  </ul>
-</nav>
+<header class="site-header">
+  <div class="site-container header-inner">
+    <nav aria-label="Primary">
+      <ul class="nav-list">
+        {
+          navItems.map((item) => (
+            <li>
+              <a class:list={["nav-link", { active: isActive(item.href) }]} href={item.href}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <ThemeToggle />
+  </div>
+</header>
 
 <style>
-  nav > ul > li > a {
-    &::before {
-      content: "{ ";
-      color: transparent; /* Braces are transparent by default */
-      transition: color 0.2s ease-in-out; /* Subtle transition for brace color */
-    }
-    &::after {
-      content: " }";
-      color: transparent; /* Braces are transparent by default */
-      transition: color 0.2s ease-in-out; /* Subtle transition for brace color */
-    }
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border);
+    background: color-mix(in oklab, var(--bg) 90%, transparent);
+    backdrop-filter: blur(8px);
+  }
 
-    &.active {
-      &::before {
-        color: var(--color-text); /* Black braces for the active link */
-      }
-      &::after {
-        color: var(--color-text); /* Black braces for the active link */
-      }
-    }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 56px;
+    gap: 16px;
+  }
 
-    /* Show light gray braces on hover for non-active links */
-    &:hover:not(.active) {
-      &::before,
-      &::after {
-        color: var(--color-text-muted);
-      }
+  .nav-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-link {
+    color: var(--fg-muted);
+    text-decoration: none;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    transition: color 0.15s ease;
+  }
+
+  .nav-link::before {
+    content: "{ ";
+    color: transparent;
+    transition: color 0.15s ease;
+  }
+
+  .nav-link::after {
+    content: " }";
+    color: transparent;
+    transition: color 0.15s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--fg);
+  }
+
+  .nav-link:hover::before,
+  .nav-link:hover::after {
+    color: var(--fg-muted);
+  }
+
+  .nav-link.active {
+    color: var(--fg);
+    font-weight: 500;
+  }
+
+  .nav-link.active::before,
+  .nav-link.active::after {
+    color: var(--fg);
+  }
+
+  @media (max-width: 640px) {
+    .nav-list {
+      gap: 18px;
     }
   }
 </style>
