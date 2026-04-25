@@ -7,16 +7,17 @@ const projects = [
     title: "WorkTime",
     description: "A tool collection centered around time management for work.",
     url: "https://worktime.vietz.dev",
-    date: "2025", // Assuming a start or last updated year, adjust as needed
+    date: "2025",
+    tags: ["Go", "React", "TypeScript"],
   },
-  // Add more projects here in the future
 ];
 ---
 
 <Layout title="Projects | Justin Vietz">
-  <div class="mt-10">
-    <h1 class="text-3xl font-bold mb-8 text-text">projects</h1>
-    <ul class="space-y-6">
+  <section class="site-container page-section">
+    <h1 class="page-title">projects</h1>
+
+    <ul class="page-list">
       {
         projects.map((project) => (
           <ListItem
@@ -25,9 +26,21 @@ const projects = [
             title={project.title}
             description={project.description}
             date={project.date}
+            tags={project.tags}
           />
         ))
       }
     </ul>
-  </div>
+  </section>
 </Layout>
+
+<style>
+  .page-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+  }
+</style>

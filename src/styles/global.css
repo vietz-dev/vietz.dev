@@ -1,55 +1,297 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
-@layer base {
-    :root {
-
-        --color-bg: var(--color-amber-50);
-        --color-bg-dark: var(--color-neutral-800);
-        --color-bg-light: var(--color-amber-200);
-
-        --color-text: var(--color-neutral-800);
-        --color-text-muted: var(--color-neutral-500);
-        --color-text-inverted: var(--color-neutral-100);
-
-        --color-border: var(--color-neutral-900)
-    }
-
-    .dark {
-
-        --color-bg: var(--color-zinc-900);
-        --color-bg-dark: var(--color-neutral-950);
-        --color-bg-light: var(--color-zinc-300);
-
-        --color-text: var(--color-zinc-100);
-        --color-text-muted: var(--color-neutral-400);
-        --color-text-inverted: var(--color-neutral-900);
-
-        --color-border: var(--color-neutral-300);
-    }
+:root {
+  color-scheme: light;
+  --bg: oklch(97% 0.012 85);
+  --bg-card: oklch(98.5% 0.009 85);
+  --fg: oklch(16% 0.01 255);
+  --fg-muted: oklch(48% 0.01 255);
+  --fg-faint: oklch(65% 0.01 255);
+  --border: oklch(82% 0.012 85);
+  --border-strong: oklch(70% 0.012 85);
+  --accent: oklch(52% 0.14 38);
+  --accent-bg: oklch(94% 0.04 38);
+  --shadow-hover: 6px 6px 0 oklch(72% 0.012 85);
+  --shadow-hover-strong: 8px 8px 0 oklch(65% 0.016 38);
+  --code-bg: oklch(20% 0.01 255);
+  --code-fg: oklch(90% 0.01 255);
+  --tag-bg: oklch(20% 0.01 255);
+  --tag-fg: oklch(97% 0.01 255);
 }
 
-@theme {
-    --color-bg: var(--color-bg);
-    --color-bg-dark: var(--color-bg-dark);
-    --color-bg-light: var(--color-bg-light);
-
-    --color-text: var(--color-text);
-    --color-text-muted: var(--color-text-muted);
-    --color-text-inverted: var(--color-text-inverted);
-
-    --color-border: var(--color-border)
+:root.dark {
+  color-scheme: dark;
+  --bg: oklch(13% 0.008 255);
+  --bg-card: oklch(17% 0.008 255);
+  --fg: oklch(93% 0.008 85);
+  --fg-muted: oklch(62% 0.008 255);
+  --fg-faint: oklch(45% 0.008 255);
+  --border: oklch(26% 0.008 255);
+  --border-strong: oklch(35% 0.008 255);
+  --accent: oklch(70% 0.14 38);
+  --accent-bg: oklch(22% 0.06 38);
+  --shadow-hover: 6px 6px 0 oklch(8% 0.008 255);
+  --shadow-hover-strong: 8px 8px 0 oklch(38% 0.08 38);
+  --code-bg: oklch(10% 0.008 255);
+  --code-fg: oklch(85% 0.01 255);
+  --tag-bg: oklch(80% 0.008 85);
+  --tag-fg: oklch(16% 0.01 255);
 }
 
-@layer components {
-    .card-hover {
-        @apply block p-4 rounded-lg border-2 border-border transition-all duration-300 ease-in-out;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    .card-hover:hover {
-        @apply -translate-x-1 -translate-y-1;
-        box-shadow: 4px 4px 0 #aaa;
-    }
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "IBM Plex Sans", sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  transition: background 0.3s, color 0.3s;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+::selection {
+  background: var(--accent-bg);
+  color: var(--fg);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+}
+
+.site-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-container {
+  width: min(100%, 768px);
+  margin: 0 auto;
+  padding-inline: 24px;
+}
+
+.site-main {
+  flex: 1;
+}
+
+.page-section {
+  padding-top: 56px;
+  padding-bottom: 80px;
+}
+
+.page-title,
+.display-title {
+  font-family: "IBM Plex Mono", monospace;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+
+.page-title {
+  font-size: clamp(36px, 6vw, 52px);
+  font-weight: 700;
+  margin: 0 0 40px;
+}
+
+.display-title {
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.muted-meta {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 13px;
+  color: var(--fg-faint);
+}
+
+.surface-card {
+  display: block;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 10px;
+  padding: 20px 24px;
+  background: var(--bg-card);
+  text-decoration: none;
+  transition: transform 0.18s, box-shadow 0.18s, color 0.18s, border-color 0.18s;
+}
+
+.surface-card.is-interactive:hover,
+.surface-card.is-interactive:focus-visible {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-hover-strong);
+}
+
+.surface-card:focus-visible,
+.nav-link:focus-visible,
+.text-link:focus-visible,
+.icon-button:focus-visible,
+.back-link:focus-visible,
+.inline-link-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  border-radius: 3px;
+  padding: 4px 8px;
+}
+
+.tag-dark {
+  background: var(--tag-bg);
+  color: var(--tag-fg);
+}
+
+.tag-accent {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.text-link,
+.inline-link-button {
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.inline-link-button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+.prose-article {
+  color: var(--fg-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.prose-article > *:first-child {
+  margin-top: 0;
+}
+
+.prose-article h2,
+.prose-article h3 {
+  font-family: "IBM Plex Mono", monospace;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+
+.prose-article h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.prose-article h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.prose-article p,
+.prose-article ul,
+.prose-article ol,
+.prose-article pre,
+.prose-article blockquote {
+  margin: 0 0 28px;
+}
+
+.prose-article a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose-article strong {
+  color: var(--fg);
+}
+
+.prose-article code:not(pre code) {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border: 1px solid color-mix(in oklab, var(--accent) 45%, transparent);
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.prose-article pre {
+  background: var(--code-bg);
+  color: var(--code-fg);
+  padding: 18px 22px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.prose-article pre code {
+  color: inherit;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.prose-article blockquote {
+  border-left: 4px solid var(--border-strong);
+  padding-left: 16px;
+  color: var(--fg);
+}
+
+.prose-article hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 40px 0;
+}
+
+@media (max-width: 640px) {
+  .site-container {
+    padding-inline: 18px;
+  }
+
+  .page-section {
+    padding-top: 40px;
+    padding-bottom: 64px;
+  }
 }

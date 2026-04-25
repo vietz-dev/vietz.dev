@@ -1,17 +1,63 @@
 ---
 import Layout from "./Layout.astro";
 
-const { frontmatter } = Astro.props;
-const { title, description } = frontmatter ?? {};
+type Props = {
+  title?: string;
+  description?: string;
+  date?: Date;
+};
+
+const { title, description, date } = Astro.props as Props;
+
+const formattedDate = date
+  ? new Intl.DateTimeFormat("en", { month: "short", year: "numeric" }).format(date)
+  : undefined;
 ---
 
 <Layout
   title={title ? `${title} | Justin Vietz` : "Blog | Justin Vietz"}
   description={description}
 >
-  <div class="mt-10">
-    <article class="prose dark:prose-invert">
+  <section class="site-container page-section post-page">
+    <a class="back-link" href="/blog">
+      <span aria-hidden="true">←</span>
+      <span>back to blog</span>
+    </a>
+
+    {formattedDate ? <p class="muted-meta post-date">{formattedDate}</p> : null}
+    {title ? <h1 class="display-title post-title">{title}</h1> : null}
+
+    <article class="prose-article">
       <slot />
     </article>
-  </div>
+  </section>
 </Layout>
+
+<style>
+  .post-page {
+    padding-top: 48px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 40px;
+    color: var(--fg-muted);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.15s ease;
+  }
+
+  .back-link:hover {
+    color: var(--fg);
+  }
+
+  .post-date {
+    margin: 0 0 16px;
+  }
+
+  .post-title {
+    margin-bottom: 48px;
+  }
+</style>

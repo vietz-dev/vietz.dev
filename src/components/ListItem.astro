@@ -1,55 +1,114 @@
 ---
 interface Props {
   href: string;
-  target?: '_blank' | '_parent' | '_self' | '_top';
+  target?: "_blank" | "_parent" | "_self" | "_top";
   title: string;
   description?: string;
   date?: string;
-
+  tags?: string[];
   titleTransitionName?: string;
 }
 
-const {
-  href,
-  target,
-  title,
-  description,
-  date,
-
-  titleTransitionName
-} = Astro.props;
-
-const actualTarget = target ?? '_self';
+const { href, target, title, description, date, tags = [], titleTransitionName } = Astro.props;
+const actualTarget = target ?? "_self";
+const isExternal = actualTarget === "_blank";
 ---
 
-<li class="group">
+<li>
   <a
     href={href}
     target={actualTarget}
-    rel="noopener noreferrer"
-    class="card-hover"
+    rel={isExternal ? "noopener noreferrer" : undefined}
+    class="surface-card is-interactive list-item-link"
   >
-    <div class="flex flex-col md:flex-row justify-between md:items-center">
-      <div class="flex-grow">
-        <div class="flex justify-between items-center">
-          <h2
-            class="text-xl font-semibold transition-colors duration-300 ease-in-out"
-            transition:name={titleTransitionName}
-          >
-            {title}
-          </h2>
-          <span class="text-xs md:hidden">
-            {date}
-          </span>
+    <div class="list-item-grid">
+      <div class="list-item-copy">
+        <div class="list-item-header">
+          <h2 class="list-item-title" transition:name={titleTransitionName}>{title}</h2>
+          {
+            tags.length > 0 && (
+              <div class="list-item-tags">
+                {tags.map((tag) => <span class="tag tag-accent">{tag}</span>)}
+              </div>
+            )
+          }
         </div>
-        <p class="text-text-muted mt-1">{description}</p>
+        {description ? <p class="list-item-description">{description}</p> : null}
       </div>
-      <div class="mt-4 md:mt-0 md:ml-6 flex flex-col items-start md:items-end">
-        <span class="text-xs hidden md:block mb-1">
-          {date}
-        </span>
-        <span class="font-semibold group-hover:underline"> Open &rarr; </span>
+
+      <div class="list-item-meta">
+        {date ? <span class="muted-meta">{date}</span> : null}
+        <span class="list-item-open">Open <span aria-hidden="true">→</span></span>
       </div>
     </div>
   </a>
 </li>
+
+<style>
+  .list-item-link {
+    color: inherit;
+  }
+
+  .list-item-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .list-item-copy {
+    flex: 1;
+  }
+
+  .list-item-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+
+  .list-item-title {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--fg);
+  }
+
+  .list-item-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .list-item-description {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--fg-muted);
+  }
+
+  .list-item-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .list-item-open {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--fg);
+  }
+
+  @media (max-width: 640px) {
+    .list-item-grid {
+      flex-direction: column;
+    }
+
+    .list-item-meta {
+      align-items: flex-start;
+    }
+  }
+</style>

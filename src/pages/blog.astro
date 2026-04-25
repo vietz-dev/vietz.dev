@@ -15,9 +15,10 @@ function formatDate(date: Date): string {
 ---
 
 <Layout title="Blog | Justin Vietz">
-  <div class="mt-10">
-    <h1 class="text-3xl font-bold mb-8 text-text">blog</h1>
-    <ul class="space-y-6">
+  <section class="site-container page-section">
+    <h1 class="page-title">blog</h1>
+
+    <ul class="page-list">
       {
         posts.map((post) => (
           <ListItem
@@ -30,5 +31,16 @@ function formatDate(date: Date): string {
         ))
       }
     </ul>
-  </div>
+  </section>
 </Layout>
+
+<style>
+  .page-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+  }
+</style>
