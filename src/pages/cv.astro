@@ -1,0 +1,368 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const experience = [
+  {
+    role: "Fullstack Software Developer",
+    company: "Atruvia AG",
+    period: "Mar 2025 — Present",
+    items: [
+      "Developing backend microservices for financial software infrastructure.",
+      "Building frontend interfaces for internal tooling and form management workflows.",
+    ],
+  },
+  {
+    role: "Fullstack Software Developer",
+    company: "CTS Eventim Solutions GmbH",
+    period: "2018 — 2025",
+    items: [
+      "Contributed to architectural design and implementation decisions alongside senior architects.",
+      "Built microservices for digital ticketing and third-party integrations.",
+      "Developed an internal toolchain for managing and configuring OpenAPI specifications.",
+      "Designed an abstraction layer for multi-provider SMS delivery.",
+      "Contributed Angular components to an in-house design system.",
+    ],
+  },
+  {
+    role: "Web Developer",
+    company: "WebAix",
+    period: "2016 — 2018",
+    items: [
+      "Delivered custom web solutions tailored to client requirements.",
+      "Analyzed and interpreted tracking reports.",
+    ],
+  },
+];
+
+const skillGroups = [
+  {
+    label: "Languages",
+    items: ["TypeScript", "JavaScript", "Go", "Java", "Kotlin", "Dart", "Groovy", "HTML", "(S)CSS"],
+  },
+  {
+    label: "Frameworks",
+    items: ["React", "Next.js", "Angular", "SvelteKit", "Spring Boot", "Flutter", "Tailwind CSS"],
+  },
+  {
+    label: "Tools",
+    items: ["Docker", "Kubernetes", "Git", "PostgreSQL", "MongoDB", "Keycloak", "Figma", "CI/CD"],
+  },
+  {
+    label: "Observability",
+    items: ["OpenTelemetry", "Grafana", "Prometheus", "Kibana"],
+  },
+];
+
+const education = [
+  {
+    degree: "Bachelor of Science — Informatics",
+    school: "Universität Bremen",
+    period: "2018 — 2022",
+  },
+  {
+    degree: "Apprenticeship in Software Development",
+    school: "Schulzentrum II Bremen",
+    period: "2018 — 2021",
+  },
+];
+---
+
+<Layout title="CV | Justin Vietz" description="Curriculum vitae of Justin Vietz.">
+  <section class="site-container page-section cv-page">
+    <header class="cv-header">
+      <div>
+        <h1 class="page-title cv-title">Justin Vietz</h1>
+        <p class="cv-role">Fullstack Software Developer</p>
+        <a class="cv-mail" href="mailto:justin@vietz.dev">justin@vietz.dev</a>
+      </div>
+
+      <a class="cv-download" href="/CV_EN.pdf" target="_blank" rel="noopener noreferrer">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>Download PDF</span>
+      </a>
+    </header>
+
+    <div class="cv-divider"></div>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Experience</h2>
+      <div class="cv-timeline">
+        {
+          experience.map((job) => (
+            <article class="cv-timeline-item">
+              <div class="cv-dot"></div>
+              <div class="cv-item-head">
+                <h3>{job.role}</h3>
+                <div class="cv-meta-row">
+                  <span class="tag tag-accent cv-company">{job.company}</span>
+                  <span class="muted-meta">{job.period}</span>
+                </div>
+              </div>
+              <ul class="cv-bullets">
+                {
+                  job.items.map((item) => (
+                    <li>{item}</li>
+                  ))
+                }
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Skills</h2>
+      <div class="cv-skills">
+        {
+          skillGroups.map((group) => (
+            <div class="cv-skill-group">
+              <div class="cv-skill-label">{group.label}</div>
+              <div class="cv-skill-tags">
+                {
+                  group.items.map((skill) => (
+                    <span class="cv-skill-tag">{skill}</span>
+                  ))
+                }
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Education</h2>
+      <div class="cv-education-list">
+        {
+          education.map((item) => (
+            <article class="cv-timeline-item cv-education-item">
+              <div class="cv-dot cv-dot-muted"></div>
+              <h3>{item.degree}</h3>
+              <p>{item.school}</p>
+              <span class="muted-meta">{item.period}</span>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </section>
+</Layout>
+
+<style>
+  .cv-page {
+    padding-top: 56px;
+  }
+
+  .cv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+
+  .cv-title {
+    margin-bottom: 8px;
+    font-size: clamp(36px, 6vw, 52px);
+  }
+
+  .cv-role {
+    margin: 0 0 16px;
+    font-size: 16px;
+    color: var(--fg-muted);
+  }
+
+  .cv-mail {
+    color: var(--accent);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
+
+  .cv-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+    margin-top: 8px;
+    padding: 8px 16px;
+    border: 1.5px solid var(--border-strong);
+    border-radius: 6px;
+    color: var(--fg-muted);
+    text-decoration: none;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, color 0.15s ease;
+  }
+
+  .cv-download:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-hover);
+    color: var(--fg);
+  }
+
+  .cv-divider {
+    border-top: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+
+  .cv-section {
+    margin-bottom: 52px;
+  }
+
+  .cv-section-title {
+    margin: 0 0 28px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+  }
+
+  .cv-timeline,
+  .cv-education-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cv-timeline-item {
+    position: relative;
+    border-left: 2px solid var(--border);
+    padding: 0 0 36px 24px;
+  }
+
+  .cv-timeline-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .cv-dot {
+    position: absolute;
+    left: -5px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    outline: 2px solid var(--accent);
+  }
+
+  .cv-dot-muted {
+    background: var(--bg-card);
+    border-color: var(--border-strong);
+    outline-color: var(--bg);
+  }
+
+  .cv-item-head {
+    margin-bottom: 12px;
+  }
+
+  .cv-item-head h3,
+  .cv-education-item h3 {
+    margin: 0 0 6px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--fg);
+  }
+
+  .cv-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cv-company {
+    white-space: nowrap;
+  }
+
+  .cv-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cv-bullets li {
+    display: flex;
+    gap: 10px;
+    color: var(--fg-muted);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .cv-bullets li::before {
+    content: "—";
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--fg-faint);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+  }
+
+  .cv-skills {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .cv-skill-group {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .cv-skill-label {
+    padding-top: 4px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--fg-faint);
+  }
+
+  .cv-skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .cv-skill-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 9px;
+    border: 1px solid var(--border-strong);
+    border-radius: 4px;
+    background: var(--bg-card);
+    color: var(--fg-muted);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .cv-education-item p {
+    margin: 0 0 4px;
+    font-size: 14px;
+    color: var(--fg-muted);
+  }
+
+  @media (max-width: 640px) {
+    .cv-page {
+      padding-top: 40px;
+    }
+
+    .cv-skill-group {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+  }
+</style>
