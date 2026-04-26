@@ -7,6 +7,7 @@ const navItems = [
   { href: "/", label: "home" },
   { href: "/projects", label: "projects" },
   { href: "/blog", label: "blog" },
+  { href: "/cv", label: "cv" },
 ];
 
 const isActive = (href: string) =>
@@ -15,12 +16,18 @@ const isActive = (href: string) =>
 
 <header class="site-header">
   <div class="site-container header-inner">
-    <nav aria-label="Primary">
+    <a class="mobile-home-link" href="/">vietz.dev</a>
+
+    <nav class="desktop-nav" aria-label="Primary">
       <ul class="nav-list">
         {
           navItems.map((item) => (
             <li>
-              <a class:list={["nav-link", { active: isActive(item.href) }]} href={item.href}>
+              <a
+                class:list={["nav-link", { active: isActive(item.href) }]}
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
+              >
                 {item.label}
               </a>
             </li>
@@ -28,9 +35,73 @@ const isActive = (href: string) =>
         }
       </ul>
     </nav>
-    <ThemeToggle />
+
+    <div class="header-actions">
+      <ThemeToggle />
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Toggle menu"
+        data-menu-toggle
+      >
+        <svg class="menu-icon menu-icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="7" x2="21" y2="7"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="17" x2="21" y2="17"></line>
+        </svg>
+        <svg class="menu-icon menu-icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="mobile-menu" hidden>
+    <nav class="site-container mobile-nav" aria-label="Mobile primary">
+      <ul class="mobile-nav-list">
+        {
+          navItems.map((item) => (
+            <li>
+              <a
+                class:list={["nav-link", "mobile-nav-link", { active: isActive(item.href) }]}
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
   </div>
 </header>
+
+<script is:inline>
+  const nav = document.querySelector(".site-header");
+  const toggle = nav?.querySelector("[data-menu-toggle]");
+  const menu = nav?.querySelector("#mobile-menu");
+
+  if (toggle instanceof HTMLButtonElement && menu instanceof HTMLElement) {
+    const setOpen = (open) => {
+      nav?.classList.toggle("menu-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      menu.hidden = !open;
+    };
+
+    setOpen(false);
+    toggle.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
+    menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
+
+    const mediaQuery = window.matchMedia("(min-width: 641px)");
+    mediaQuery.addEventListener("change", (event) => {
+      if (event.matches) setOpen(false);
+    });
+  }
+</script>
 
 <style>
   .site-header {
@@ -50,7 +121,12 @@ const isActive = (href: string) =>
     gap: 16px;
   }
 
-  .nav-list {
+  .desktop-nav {
+    display: block;
+  }
+
+  .nav-list,
+  .mobile-nav-list {
     list-style: none;
     display: flex;
     align-items: center;
@@ -98,9 +174,84 @@ const isActive = (href: string) =>
     color: var(--fg);
   }
 
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mobile-home-link,
+  .menu-toggle,
+  .mobile-menu {
+    display: none;
+  }
+
+  .mobile-home-link {
+    color: var(--fg);
+    text-decoration: none;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .menu-toggle {
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 4px;
+    border: 0;
+    background: transparent;
+    color: var(--fg);
+    cursor: pointer;
+  }
+
+  .menu-icon-close,
+  .menu-open .menu-icon-open {
+    display: none;
+  }
+
+  .menu-open .menu-icon-close {
+    display: block;
+  }
+
+  .mobile-menu {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  .mobile-nav {
+    padding-top: 8px;
+    padding-bottom: 16px;
+  }
+
+  .mobile-nav-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .mobile-nav-link {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    font-size: 18px;
+  }
+
   @media (max-width: 640px) {
-    .nav-list {
-      gap: 18px;
+    .desktop-nav {
+      display: none;
+    }
+
+    .mobile-home-link,
+    .menu-toggle,
+    .mobile-menu {
+      display: flex;
+    }
+
+    .mobile-menu[hidden] {
+      display: none;
     }
   }
 </style>
