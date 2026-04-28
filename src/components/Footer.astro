@@ -1,4 +1,5 @@
 ---
+import BrandLogo from "./BrandLogo.astro";
 import Linkedin from "@lucide/astro/icons/linkedin";
 import Github from "simple-icons-astro/Github";
 import Xing from "simple-icons-astro/Xing";
@@ -30,6 +31,11 @@ const socialLinks: SocialLink[] = [
 
 <footer class="site-footer">
   <div class="site-container footer-inner">
+    <div class="footer-brand-block">
+      <BrandLogo size="md" />
+      <p class="footer-copy">© 2026 Justin Vietz. All rights reserved.</p>
+    </div>
+
     <ul class="footer-links">
       {
         socialLinks.map(({ Icon, text, href }) => (
@@ -42,7 +48,6 @@ const socialLinks: SocialLink[] = [
         ))
       }
     </ul>
-    <p class="footer-copy">© 2026 Justin Vietz. All rights reserved.</p>
   </div>
 </footer>
 
@@ -54,13 +59,26 @@ const socialLinks: SocialLink[] = [
     border-top: 1px solid var(--border);
   }
 
+  .footer-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .footer-brand-block {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
   .footer-links {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 0;
-    margin: 0 0 32px;
+    margin: 0;
   }
 
   .footer-link {
@@ -83,5 +101,11 @@ const socialLinks: SocialLink[] = [
     margin: 0;
     font-size: 13px;
     color: var(--fg-faint);
+  }
+
+  @media (max-width: 640px) {
+    .footer-inner {
+      flex-direction: column;
+    }
   }
 </style>
