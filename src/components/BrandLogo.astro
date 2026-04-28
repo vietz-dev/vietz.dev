@@ -1,0 +1,64 @@
+---
+interface Props {
+  href?: string;
+  size?: "sm" | "md";
+  className?: string;
+}
+
+const { href = "/", size = "md", className = "" } = Astro.props as Props;
+const classes = ["brand-logo", `brand-logo--${size}`, className].filter(Boolean).join(" ");
+---
+
+<a class={classes} href={href} aria-label="vietz.dev home">
+  <img class="brand-mark" src="/favicon.svg" alt="" aria-hidden="true" />
+  <span class="brand-wordmark">
+    <span>vietz</span><span class="brand-dev">.dev</span>
+  </span>
+</a>
+
+<style>
+  .brand-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--fg);
+    text-decoration: none;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .brand-logo--sm {
+    font-size: 20px;
+  }
+
+  .brand-logo--md {
+    font-size: 28px;
+  }
+
+  .brand-mark {
+    display: block;
+    flex-shrink: 0;
+    transform: translateY(1px);
+  }
+
+  .brand-logo--sm .brand-mark {
+    width: 24px;
+    height: 24px;
+  }
+
+  .brand-logo--md .brand-mark {
+    width: 32px;
+    height: 32px;
+  }
+
+  .brand-wordmark {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .brand-dev {
+    color: var(--accent);
+  }
+</style>

@@ -7,15 +7,5 @@
     </linearGradient>
   </defs>
   
-  <path d="M100,20 
-           C130,20 150,30 165,50
-           C180,70 185,90 180,110
-           C175,130 165,145 145,160
-           C125,175 105,180 85,175
-           C65,170 45,155 30,135
-           C15,115 15,90 20,70
-           C25,50 40,30 60,23
-           C73,18 87,18 100,20 Z" 
-        fill="url(#orangeGradient)"
-        stroke="none"/>
+  <circle cx="100" cy="100" r="80" fill="url(#orangeGradient)" />
 </svg>
