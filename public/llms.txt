@@ -9,6 +9,7 @@ Location: Muenster, Germany
 Role: Senior Software Developer
 Primary Focus: Full-stack web development
 Current Employer: dreifach.ai (remote-first AI startup, fully remote)
+Industry Focus: InsurTech — AI-focused software products for insurers
 
 Short Bio (2-3 sentences):
 I am a full-stack developer building thoughtful web experiences and practical tools. I enjoy shipping clean, maintainable products and learning across the stack. I care about code quality, clear communication, and building things that last.
