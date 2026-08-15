@@ -48,6 +48,15 @@ const socialLinks: SocialLink[] = [
         ))
       }
     </ul>
+
+    <ul class="footer-legal" aria-label="Legal">
+      <li>
+        <a class="footer-link" href="/impressum">Impressum</a>
+      </li>
+      <li>
+        <a class="footer-link" href="/datenschutz">Datenschutz</a>
+      </li>
+    </ul>
   </div>
 </footer>
 
@@ -79,6 +88,16 @@ const socialLinks: SocialLink[] = [
     gap: 10px;
     padding: 0;
     margin: 0;
+  }
+
+  .footer-legal {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 24px 0 0;
+    margin: 32px 0 0;
+    border-top: 1px solid var(--border);
+    width: 100%;
   }
 
   .footer-link {
