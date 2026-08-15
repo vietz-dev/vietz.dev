@@ -37,7 +37,8 @@ I am a full-stack developer building thoughtful web experiences and practical to
 ## Tech Stack (Representative, not exhaustive)
 Languages: Typescript, Java, Groovy, HTML, CSS, SASS, Dart, Golang, Kotlin
 Frameworks: React, NextJS, Angular, TrailwindCSS, ShadCN, Svelte, Spring Boot
+AI / LLM: Agentic Development, LLM Application Development, MCP, Prompt Engineering
 Databases: PostgreSQL, MongoDB, Redis
 Infrastructure / Cloud: Kubernetes, AWS, Knative
-Tooling: Git, Docker, Vite, Figma, Git, GitLab, Bitbucket, Jira
+Tooling: Git, Docker, Vite, Figma, Git, GitLab, Bitbucket, Jira, Claude Code, Codex
 Other: OpenAPI, REST, CI/CD, IAC, OAuth2, Grafana, Prometheus, OpenTelemetry
