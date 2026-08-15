@@ -30,24 +30,26 @@ const socialLinks: SocialLink[] = [
 ---
 
 <footer class="site-footer">
-  <div class="site-container footer-inner">
-    <div class="footer-brand-block">
-      <BrandLogo size="md" />
-      <p class="footer-copy">© 2026 Justin Vietz. All rights reserved.</p>
-    </div>
+  <div class="site-container">
+    <div class="footer-inner">
+      <div class="footer-brand-block">
+        <BrandLogo size="md" />
+        <p class="footer-copy">© 2026 Justin Vietz. All rights reserved.</p>
+      </div>
 
-    <ul class="footer-links">
-      {
-        socialLinks.map(({ Icon, text, href }) => (
-          <li>
-            <a class="footer-link" href={href} target="_blank" rel="noopener noreferrer">
-              <Icon size={16} />
-              <span>{text}</span>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+      <ul class="footer-links">
+        {
+          socialLinks.map(({ Icon, text, href }) => (
+            <li>
+              <a class="footer-link" href={href} target="_blank" rel="noopener noreferrer">
+                <Icon size={16} />
+                <span>{text}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
 
     <ul class="footer-legal" aria-label="Legal">
       <li>
@@ -97,7 +99,6 @@ const socialLinks: SocialLink[] = [
     padding: 24px 0 0;
     margin: 32px 0 0;
     border-top: 1px solid var(--border);
-    width: 100%;
   }
 
   .footer-link {
