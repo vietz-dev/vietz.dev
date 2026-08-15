@@ -1,0 +1,6 @@
+# Project toolchain — mirrors the CI/CD runtime (see Dockerfile + package.json).
+# node:  Docker build runs on node:22-bookworm-slim -> keep 22.x locally.
+# pnpm:  pinned in package.json via "packageManager" -> keep the exact version.
+[tools]
+node = "22"
+pnpm = "10.34.5"
