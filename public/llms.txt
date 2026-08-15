@@ -6,8 +6,9 @@
 Name: Justin Vietz
 Pronouns: he/him
 Location: Muenster, Germany
-Role: Full-stack Developer
+Role: Senior Software Developer
 Primary Focus: Full-stack web development
+Current Employer: dreifach.ai (remote-first AI startup, fully remote)
 
 Short Bio (2-3 sentences):
 I am a full-stack developer building thoughtful web experiences and practical tools. I enjoy shipping clean, maintainable products and learning across the stack. I care about code quality, clear communication, and building things that last.
