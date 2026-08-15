@@ -1,0 +1,161 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Datenschutzerklärung — vietz.dev"
+  description="Datenschutzerklärung von vietz.dev"
+  lang="de"
+>
+  <section class="site-container page-section">
+    <h1 class="page-title">Datenschutzerklärung</h1>
+
+    <div class="prose-article">
+      <p>Stand: August 2026</p>
+
+      <h2>1. Verantwortlicher</h2>
+      <p>
+        Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:<br />
+        Justin Vietz<br />
+        Raesfeldstraße 74<br />
+        48149 Münster<br />
+        Deutschland<br />
+        E-Mail: <a href="mailto:justin@vietz.dev">justin@vietz.dev</a>
+      </p>
+
+      <h2>2. Überblick über die Verarbeitungen</h2>
+      <p>
+        Diese Website ist ein statisches Portfolio. Es werden keine Nutzerkonten geführt und keine
+        Kommentare oder Formulare verarbeitet. Personenbezogene Daten fallen bei folgenden Punkten an:
+      </p>
+      <ul>
+        <li>Bereitstellung der Website (Hosting),</li>
+        <li>Reichweitenmessung mit Umami Analytics (self-hosted, cookieless),</li>
+        <li>lokale Auslieferung der Schriftarten,</li>
+        <li>lokale Speicherung der Theme-Einstellung im Browser.</li>
+      </ul>
+
+      <h2>3. Hosting</h2>
+      <p>
+        Diese Website wird bei <strong>Fly.io</strong> (Fly.io, Inc., 2261 Market Street #4559, San
+        Francisco, CA 94114, USA) gehostet. Die Auslieferung erfolgt über Server in der EU-Region
+        Frankfurt am Main, Deutschland. Beim Abruf der Website wird die IP-Adresse des Besuchers
+        technisch bedingt an den Server übermittelt und für die Dauer der Auslieferung verarbeitet
+        (Art. 6 Abs. 1 lit. f DSGVO – berechtigtes Interesse an einer sicheren und performanten
+        Bereitstellung der Website). Es findet keine Zusammenführung mit anderen Daten statt.
+      </p>
+
+      <h2>4. Reichweitenmessung mit Umami Analytics</h2>
+      <p>
+        Diese Website verwendet <strong>Umami Analytics</strong> zur statistischen Auswertung der
+        Seitenaufrufe. Umami wird <strong>selbst gehostet</strong> auf der eigenen Infrastruktur unter
+        <a href="https://analytics.vietz.dev">analytics.vietz.dev</a> betrieben; die Daten verlassen
+        nicht die eigene Infrastruktur und werden nicht an Dritte weitergegeben.
+      </p>
+
+      <h4>Cookieless &amp; kein Gerätezugriff</h4>
+      <p>
+        Umami setzt <strong>keine Cookies</strong> und speichert keine Informationen auf dem Endgerät
+        des Besuchers (kein localStorage, kein SessionStorage, kein Fingerprinting). Das Gesetz über den
+        Datenschutz und den Schutz der Privatsphäre in der Telekommunikation und bei digitalen Diensten
+        (TDDDG, § 25 Abs. 1) verlangt deshalb für diese Analyse <strong>keine Einwilligung</strong>.
+      </p>
+
+      <h4>Verarbeitete Daten</h4>
+      <p>
+        Umami erfasst automatisiert folgende Daten pro Seitenaufruf: aufgerufene URL, Referrer (Herkunfts-
+        verweis), Browsertyp und -version, Betriebssystem, Gerätetyp, Bildschirmauflösung, Sprache des
+        Browsers sowie das Land des Besuchers (über eine GeoIP-Zuordnung). URL-Parameter und Hash-Fragmente
+        werden bewusst <strong>nicht</strong> erfasst.
+      </p>
+      <p>
+        Die <strong>IP-Adresse</strong> wird ausschließlich transient verarbeitet: für die GeoIP-Zuordnung
+        (Landesebene) und die Erkennung von Bots. Sie wird <strong>nicht im Klartext gespeichert</strong>.
+        Zur Unterscheidung von Besuchen wird aus IP-Adresse, User-Agent und einem serverseitigen, regelmäßig
+        rotierenden Geheimnis ein <strong>kryptografischer Hash (SHA-512)</strong> gebildet. Eine
+        Zuordnung des Hashs zu einer konkreten Person ist dem Betreiber nicht möglich.
+      </p>
+
+      <h4>Rechtsgrundlage</h4>
+      <p>
+        Die Verarbeitung erfolgt auf Grundlage von <strong>Art. 6 Abs. 1 lit. f DSGVO</strong> (berechtigtes
+        Interesse des Betreibers an der Reichweitenmessung und der bedarfsgerechten Verbesserung des
+        Angebots). Angesichts der cookieless-Erfassung, der Hash-basierten Verarbeitung der IP-Adresse ohne
+        Klartext-Speicherung und der ausschließlich eigenen Infrastruktur überwiegt dieses Interesse die
+        Rechte und Freiheiten der Besucher nicht.
+      </p>
+
+      <h4>Widerspruch (Opt-out)</h4>
+      <p>
+        Das Tracking respektiert die Browsereinstellung <strong>„Do Not Track“ (DNT)</strong> bzw. die
+        <strong>Global Privacy Control (GPC)</strong>: Ist eine dieser Einstellungen aktiv, wird kein
+        Tracking ausgeführt. Alternativ kann Tracking durch das Deaktivieren von JavaScript oder durch
+        einen Werbeblocker, der das Tracking-Skript blockiert, unterbunden werden. Es werden keine
+        Nutzerprofile erstellt; die Daten dienen ausschließlich aggregierten Statistiken.
+      </p>
+
+      <h4>Speicherdauer</h4>
+      <p>
+        Die erfassten Besuchsdaten werden auf dem eigenen Server gespeichert und nicht automatisiert an
+        Dritte übermittelt. Es besteht keine feste automatische Löschfrist; die Daten können vom Betreiber
+        jederzeit gelöscht werden.
+      </p>
+
+      <h2>5. Schriftarten (lokal gehostet)</h2>
+      <p>
+        Zur einheitlichen Darstellung verwendet diese Website die Schriftarten <strong>Lora</strong>,
+        <strong>IBM Plex Sans</strong> und <strong>IBM Plex Mono</strong>. Die Schriftdateien werden
+        <strong>lokal vom eigenen Server ausgeliefert</strong> (self-hosted); es wird keine Verbindung zu
+        den Servern von Google oder anderen Dritten hergestellt und es werden keine Daten an Dritte
+        übermittelt.
+      </p>
+
+      <h2>6. Lokale Speicherung (localStorage)</h2>
+      <p>
+        Diese Website speichert die vom Besucher gewählte <strong>Farbeinstellung (hell/dunkel)</strong> im
+        <code>localStorage</code> des Browsers (Schlüssel <code>theme</code>), damit die Einstellung beim
+        nächsten Besuch erhalten bleibt. Diese Daten verlassen das Endgerät nicht und werden nicht an den
+        Betreiber übermittelt. Die Speicherung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO (durch
+        die aktive Auswahl der Farbeinstellung) bzw. unseres berechtigten Interesses an einer nutzer-
+        freundlichen Darstellung (Art. 6 Abs. 1 lit. f DSGVO). Die Einstellung kann jederzeit über die
+        Browserfunktionen zum Löschen von Website-Daten entfernt werden.
+      </p>
+
+      <h2>7. Ihre Rechte als betroffene Person</h2>
+      <p>Ihnen stehen bezüglich Ihrer personenbezogenen Daten folgende Rechte zu:</p>
+      <ul>
+        <li>Recht auf Auskunft (Art. 15 DSGVO),</li>
+        <li>Recht auf Berichtigung (Art. 16 DSGVO),</li>
+        <li>Recht auf Löschung (Art. 17 DSGVO),</li>
+        <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO),</li>
+        <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO),</li>
+        <li>Recht auf Widerspruch gegen die Verarbeitung (Art. 21 DSGVO),</li>
+        <li>Recht auf Widerruf erteilter Einwilligungen (Art. 7 Abs. 3 DSGVO) mit Wirkung für die Zukunft.</li>
+      </ul>
+      <p>
+        Zur Ausübung Ihrer Rechte genügt eine E-Mail an die oben genannte Adresse des Verantwortlichen.
+      </p>
+
+      <h2>8. Beschwerderecht bei der Aufsichtsbehörde</h2>
+      <p>
+        Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren, wenn Sie der
+        Ansicht sind, dass die Verarbeitung Ihrer personenbezogenen Daten gegen die DSGVO verstößt
+        (Art. 77 DSGVO). Zuständig ist insbesondere die Aufsichtsbehörde Ihres Aufenthaltsorts oder des
+        Orts des mutmaßlichen Verstoßes. Für den Betreiber zuständig ist die
+        Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW).
+      </p>
+
+      <h2>9. Keine automatisierte Entscheidungsfindung</h2>
+      <p>
+        Eine automatisierte Entscheidungsfindung einschließlich Profiling im Sinne des Art. 22 DSGVO findet
+        nicht statt.
+      </p>
+
+      <h2>10. Aktualität dieser Datenschutzerklärung</h2>
+      <p>
+        Diese Datenschutzerklärung wird angepasst, sobald sich die Verarbeitungen oder die Rechtslage
+        ändern. Es gilt jeweils die hier veröffentlichte Fassung.
+      </p>
+    </div>
+  </section>
+</Layout>
