@@ -12,6 +12,10 @@ const umamiWebsiteId =
 // https://astro.build/config
 export default defineConfig({
   site: "https://vietz.dev",
+  // Astro 7 defaults to 'jsx' whitespace rules, which swallow the space between
+  // text and an adjacent inline element (e.g. "... unter <a>analytics.vietz.dev</a>").
+  // HTML rules keep the rendered output identical to before the upgrade.
+  compressHTML: true,
   integrations: [
     umami({
       id: umamiWebsiteId,
