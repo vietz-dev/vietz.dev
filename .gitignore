@@ -24,3 +24,6 @@ pnpm-debug.log*
 .idea/
 
 vietz-design.zip
+
+# Impeccable developer-specific consent
+.impeccable/config.local.json

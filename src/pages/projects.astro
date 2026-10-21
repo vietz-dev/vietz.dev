@@ -5,10 +5,19 @@ import Layout from "../layouts/Layout.astro";
 const projects = [
   {
     title: "WorkTime",
-    description: "A tool collection centered around time management for work.",
+    description:
+      "A simple toolbox for calculating time at work. Quickview calculates when your workday ends from your start time, break, and workday duration. Decimal Time converts between HH:mm and decimal hours. No account is required to use the tools.",
     url: "https://worktime.vietz.dev",
     date: "2025",
     tags: ["Go", "React", "TypeScript"],
+  },
+  {
+    title: "DevProxy",
+    description:
+      "A CLI for parallel agent development in Git worktrees. It gives each worktree a predictable local HTTPS URL, launches or registers development services, and uses Caddy for TLS and routing.",
+    url: null,
+    date: "In development",
+    tags: [],
   },
 ];
 ---
@@ -19,16 +28,27 @@ const projects = [
 
     <ul class="page-list">
       {
-        projects.map((project) => (
-          <ListItem
-            href={project.url}
-            target="_blank"
-            title={project.title}
-            description={project.description}
-            date={project.date}
-            tags={project.tags}
-          />
-        ))
+        projects.map((project) =>
+          project.url ? (
+            <ListItem
+              href={project.url}
+              target="_blank"
+              title={project.title}
+              description={project.description}
+              date={project.date}
+              tags={project.tags}
+            />
+          ) : (
+            <li class="surface-card project-unlinked">
+              <div class="project-header">
+                <h2>{project.title}</h2>
+                <span class="muted-meta">{project.date}</span>
+              </div>
+              <p>{project.description}</p>
+              <p class="project-planned-site">Planned site: devproxy.vietz.dev</p>
+            </li>
+          ),
+        )
       }
     </ul>
   </section>
@@ -42,5 +62,33 @@ const projects = [
     gap: 16px;
     margin: 0;
     padding: 0;
+  }
+
+  .project-unlinked {
+    padding: 20px;
+  }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .project-header h2 {
+    margin: 0 0 8px;
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .project-unlinked p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--fg-muted);
+  }
+
+  .project-unlinked .project-planned-site {
+    margin-top: 8px;
   }
 </style>

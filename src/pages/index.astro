@@ -11,20 +11,25 @@ const facts = [
 
 <Layout>
   <section class="site-container page-section home-page">
+    <section class="home-hero" aria-labelledby="home-title">
+      <h1 id="home-title" class="home-title">Justin Vietz</h1>
+      <p class="home-role">Full-stack developer in Münster, Germany.</p>
+      <p class="home-summary">
+        I build things for the web — from frontend interfaces that feel right to backend systems that stay out of the way.
+      </p>
+      <div class="home-actions">
+        <a class="home-primary-link" href="/projects">Explore my projects <span aria-hidden="true">↗</span></a>
+        <a class="home-secondary-link" href="/blog">Read my writing</a>
+      </div>
+      <a class="home-email" href="mailto:justin@vietz.dev">justin@vietz.dev</a>
+    </section>
+
     <Moin />
 
     <div class="home-divider"></div>
 
     <section class="home-intro">
-      <p class="home-lead">
-        Moin! I am <strong>Justin Vietz</strong>, a full-stack developer by ❤️
-      </p>
-
       <div class="home-copy">
-        <p>
-          I build things for the web — from frontend interfaces that feel right, to backend systems that stay out of the way.
-          Currently based in <strong>Münster, Germany</strong>.
-        </p>
         <p>
           Full stack, end to end — TypeScript, Go, React, Angular, Svelte, and whatever infrastructure it takes to ship and keep it running.
           The framework is a means to an end. What I actually care about is maintainable code, reproducible infrastructure, and staying curious.
@@ -51,7 +56,84 @@ const facts = [
 
 <style>
   .home-page {
-    padding-top: 64px;
+    padding-top: 48px;
+  }
+
+  .home-hero {
+    padding-bottom: 48px;
+  }
+
+  .home-title {
+    margin: 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: clamp(42px, 8vw, 64px);
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    color: var(--fg);
+  }
+
+  .home-role {
+    margin: 14px 0 0;
+    font-size: clamp(18px, 3vw, 22px);
+    font-weight: 500;
+    color: var(--fg);
+  }
+
+  .home-summary {
+    max-width: 58ch;
+    margin: 18px 0 0;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--fg-muted);
+  }
+
+  .home-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    margin-top: 24px;
+  }
+
+  .home-primary-link,
+  .home-secondary-link,
+  .home-email {
+    width: fit-content;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    text-underline-offset: 3px;
+  }
+
+  .home-primary-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 15px;
+    border-radius: 4px;
+    background: var(--fg);
+    color: var(--bg);
+    text-decoration: none;
+  }
+
+  .home-primary-link:hover {
+    background: var(--accent);
+  }
+
+  .home-secondary-link,
+  .home-email {
+    color: var(--fg);
+  }
+
+  .home-email {
+    display: inline-block;
+    margin-top: 20px;
+  }
+
+  .home-primary-link:focus-visible,
+  .home-secondary-link:focus-visible,
+  .home-email:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
   }
 
   .home-divider {
@@ -61,21 +143,6 @@ const facts = [
 
   .home-intro {
     margin-bottom: 56px;
-  }
-
-  .home-lead {
-    margin: 0 0 24px;
-    font-family: "IBM Plex Mono", monospace;
-    font-size: clamp(18px, 2.5vw, 22px);
-    line-height: 1.65;
-    color: var(--fg);
-    font-weight: 300;
-  }
-
-  .home-lead strong,
-  .home-copy strong {
-    color: var(--fg);
-    font-weight: 700;
   }
 
   .home-copy {
@@ -118,5 +185,15 @@ const facts = [
     font-size: 14px;
     font-weight: 500;
     color: var(--fg);
+  }
+
+  @media (max-width: 640px) {
+    .home-page {
+      padding-top: 32px;
+    }
+
+    .home-hero {
+      padding-bottom: 40px;
+    }
   }
 </style>

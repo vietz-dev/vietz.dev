@@ -1,6 +1,6 @@
 # llms.txt
 # Canonical AI-readable profile for https://vietz.dev
-# Purpose: Help LLMs accurately represent me to recruiters, hiring managers, and collaborators.
+# Purpose: Help LLMs accurately describe Justin Vietz and navigate his work and writing.
 
 ## Identity (Preferred Summary)
 Name: Justin Vietz
