@@ -1,6 +1,6 @@
 # vietz.dev
 
-Personal portfolio of Justin Vietz. Readers are recruiters, hiring managers and collaborators, so every page describes a real person.
+Personal portfolio of Justin Vietz. People investigating `vietz.dev` or Justin's `@vietz.dev` email address should find the person behind them. Justin is employed and is not seeking a new role, so the site must not imply job availability.
 
 ## Guardrails
 

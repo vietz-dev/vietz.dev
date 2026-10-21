@@ -25,7 +25,7 @@
   --bg-card: oklch(98.5% 0.009 85);
   --fg: oklch(16% 0.01 255);
   --fg-muted: oklch(48% 0.01 255);
-  --fg-faint: oklch(65% 0.01 255);
+  --fg-faint: oklch(54% 0.01 255);
   --border: oklch(82% 0.012 85);
   --border-strong: oklch(70% 0.012 85);
   --accent: oklch(52% 0.14 38);
@@ -44,7 +44,7 @@
   --bg-card: oklch(17% 0.008 255);
   --fg: oklch(93% 0.008 85);
   --fg-muted: oklch(62% 0.008 255);
-  --fg-faint: oklch(45% 0.008 255);
+  --fg-faint: oklch(59% 0.008 255);
   --border: oklch(26% 0.008 255);
   --border-strong: oklch(35% 0.008 255);
   --accent: oklch(70% 0.14 38);
